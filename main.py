@@ -13,11 +13,30 @@ ORANGE = (255, 165, 0)
 GREY = (128, 128, 128)
 TURQUOISE = (64, 224, 208)
 
-WIDTH = 750 + 6
+WIDTH = 600 + 6
 WALL_WIDTH = 5
 WIN = pygame.display.set_mode((WIDTH, WIDTH))
 pygame.display.set_caption("Maze Generation & Path Finding Algorithm Visualizer")
 pygame.init()
+
+
+def print_help():
+    print("\nHELP MENU\n\n"
+          "Press H to bring up this Menu\n"
+          "Press C to Clear the Grid\n\n"
+          "Press 1 to Generate a Maze Using Random DFS\n"
+          "Press 2 to Generate a Maze Using Prims Algorithm\n"
+          "Press 3 to Generate a Maze Using Kruskal's Algorithm\n"
+          "Press 4 to Generate a Maze Using The Aldous Broder Algorithm\n"
+          "Press 5 to Generate a Maze Using The Hunt and Kill Algorithm\n\n"
+          "Press N to Not Generate a maze and draw the Barricades Yourself\n\n"
+          "After a Start and End have been defined using left mouse...\n"
+          "Press Q To Solve the Maze Using A* Search\n"
+          "Press W To Solve the Maze Using Dijkstra's Algorithm\n"
+          "Press E To Solve the Maze Using BFS\n"
+          "Press R To solve the Maze Using DFS\n"
+          "Press T To Solve the Maze Using Greedy Best-First Search.\n"
+          )
 
 
 def main(win, width):
@@ -36,6 +55,8 @@ def main(win, width):
     maze = False
     color = BLACK
     path = False
+
+    print_help()
 
     run = True
     while run:
@@ -162,7 +183,7 @@ def main(win, width):
 
                     path = algorithms.greedy_best_first(lambda: Grid.draw(win, grid, ROWS, width, color), grid, start, end)
 
-                # Press C to clear the maze/path back to the original black slate
+                # Press C to clear the maze/path back to the original black slate1
                 if event.key == pygame.K_c:
                     start = None
                     end = None
@@ -170,6 +191,9 @@ def main(win, width):
                     color = BLACK
                     path = False
                     grid = Grid.make_grid(ROWS, width)
+
+                if event.key == pygame.K_h:
+                    print_help()
 
     pygame.quit()
 
